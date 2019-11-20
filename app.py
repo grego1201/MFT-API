@@ -7,7 +7,7 @@ import numpy as np
 
 
 #Cv
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 
 #Import KNN
 from sklearn.neighbors import KNeighborsClassifier
