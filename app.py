@@ -14,12 +14,15 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn import metrics
 
 
-
 app = FlaskAPI(__name__)
+
+@app.route("/wake_up/", methods=['GET'])
+def wake_up():
+    return "Waked up"
 
 
 @app.route("/predict/", methods=['GET'])
-def test_method():
+def predict():
     # Create Dataframe from our data.
     headers = ["TABLEU", "C1_AGE", "C1_RANKING", "C1_HANDNESS", "C1_WEAPON", "C2_AGE",
                "C2_RANKING", "C2_HANDNESS", "C2_WEAPON", "WINNER"]
@@ -44,15 +47,16 @@ def test_method():
     predict = metrics.accuracy_score(y_test, y_pred)
 
     data = []
-    data.append(int(request.data.get('f1', '')))
-    data.append(int(request.data.get('f2', '')))
-    data.append(int(request.data.get('f3', '')))
-    data.append(int(request.data.get('f4', '')))
-    data.append(request.data.get('f5', ''))
-    data.append(int(request.data.get('f6', '')))
-    data.append(int(request.data.get('f7', '')))
-    data.append(int(request.data.get('f8', '')))
-    data.append(request.data.get('f9', ''))
+    data.append(int(request.data.get('tableu', '')))
+    data.append(int(request.data.get('fencer1_age', '')))
+    data.append(int(request.data.get('fencer1_ranking', '')))
+    data.append(int(request.data.get('fencer1_handness', '')))
+    data.append(request.data.get('fencer1_weapon', ''))
+    data.append(int(request.data.get('fencer2_age', '')))
+    data.append(int(request.data.get('fencer2_ranking', '')))
+    data.append(int(request.data.get('fencer2_handness', '')))
+    data.append(request.data.get('fencer2_weapon', ''))
+
 
     predict = knn.predict_proba([data])
     return str(predict)
