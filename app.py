@@ -76,5 +76,16 @@ def me():
     resp = Response(js, status=response, mimetype='application/json')
     return resp
 
+@app.route("/fake_create", methods=['POST'])
+def fake_create():
+    data = {
+        'message': 'this is a message'
+    }
+
+    js = json.dumps(data)
+
+    resp = Response(js, status=200, mimetype='application/json')
+    return resp
+
 if __name__ == "__main__":
     app.run(debug=False)
