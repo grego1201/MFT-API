@@ -1,4 +1,4 @@
-from flask import request, url_for
+from flask import request, url_for, json, jsonify, Response
 from flask_api import FlaskAPI, status, exceptions
 
 #Pandas
@@ -60,6 +60,21 @@ def predict():
 
     predict = knn.predict_proba([data])
     return str(predict)
+
+@app.route("/me.json", methods=['GET'])
+def me():
+    token = str(request.args.get('token'))
+    if token == 'y38USsxxrszr3E':
+        data = {'message': 'correct token'}
+        response = 200
+    else:
+        data = {'message': 'incorrect token'}
+        response = 401
+
+    js = json.dumps(data)
+
+    resp = Response(js, status=response, mimetype='application/json')
+    return resp
 
 if __name__ == "__main__":
     app.run(debug=False)
