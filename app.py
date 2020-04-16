@@ -79,6 +79,22 @@ def me():
 @app.route("/interactive.json",  methods=['POST'])
 def interactive():
     data = {
+        "type": "modal",
+        "title": {
+            "type": "plain_text",
+            "text": "My App",
+            "emoji": true
+        },
+        "submit": {
+            "type": "plain_text",
+            "text": "Submit",
+            "emoji": true
+        },
+        "close": {
+            "type": "plain_text",
+            "text": "Cancel",
+            "emoji": true
+        },
         "blocks": [
             {
                 "type": "section",
@@ -86,6 +102,15 @@ def interactive():
                     "type": "mrkdwn",
                     "text": "This is a section test"
                 }
+            },
+            {
+                "type": "context",
+                "elements": [
+                    {
+                        "type": "mrkdwn",
+                        "text": "Last updated: Jan 1, 2019"
+                    }
+                ]
             }
         ]
     }
@@ -93,7 +118,7 @@ def interactive():
     js = json.dumps(data)
     resp = Response(js, status=200, mimetype='application/json')
     return resp
-  
+
 @app.route("/fake_create", methods=['POST'])
 def fake_create():
     data = {
