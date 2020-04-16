@@ -76,5 +76,23 @@ def me():
     resp = Response(js, status=response, mimetype='application/json')
     return resp
 
+@app.route("/interactive.json",  methods=['POST'])
+def interactive():
+    data = {
+        "blocks": [
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "This is a section test"
+                }
+            }
+        ]
+    }
+
+    js = json.dumps(data)
+    resp = Response(js, status=200, mimetype='application/json')
+    return resp
+
 if __name__ == "__main__":
     app.run(debug=False)
