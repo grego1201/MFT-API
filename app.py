@@ -82,18 +82,15 @@ def interactive():
         "type": "modal",
         "title": {
             "type": "plain_text",
-            "text": "My App",
-            "emoji": true
+            "text": "My App"
         },
         "submit": {
             "type": "plain_text",
-            "text": "Submit",
-            "emoji": true
+            "text": "Submit"
         },
         "close": {
             "type": "plain_text",
             "text": "Cancel",
-            "emoji": true
         },
         "blocks": [
             {
